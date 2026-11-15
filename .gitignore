@@ -1,0 +1,33 @@
+# Downloaded and generated data (re-create with src/download.py and src/build.py)
+dataset/training/raw/
+dataset/training/processed/
+
+# Training outputs: checkpoints, metrics, plots and generated fake data
+# (re-create with dataset/training/model/train_run.py)
+dataset/training/model/train_runs/
+*.pt
+*.pkl
+
+# Released models are kept in git
+!models/**/*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Secrets and local settings
+.env
+.env.*
+.claude/settings.local.json
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

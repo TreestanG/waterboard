@@ -1,0 +1,225 @@
+{
+  "model": "lstm_gnn",
+  "task": "detection + leak-node localization",
+  "datasets": [
+    "leakdb_net1",
+    "leakdb_hanoi",
+    "sim_net1",
+    "sim_net3"
+  ],
+  "holdout_datasets": [],
+  "epochs_run": 3,
+  "epochs_planned": 3,
+  "hidden_size": 128,
+  "best_epoch": 3,
+  "threshold": 0.6291266679763794,
+  "threshold_source": "best F1 on pooled validation",
+  "window_len": {
+    "leakdb_net1": 48,
+    "leakdb_hanoi": 48,
+    "sim_net1": 48,
+    "sim_net3": 48
+  },
+  "stride": {
+    "leakdb_net1": 2,
+    "leakdb_hanoi": 2,
+    "sim_net1": 2,
+    "sim_net3": 2
+  },
+  "n_scenarios": {
+    "leakdb_net1": {
+      "train": 692,
+      "val": 155
+    },
+    "leakdb_hanoi": {
+      "train": 712,
+      "val": 140
+    },
+    "sim_net1": {
+      "train": 8,
+      "val": 0
+    },
+    "sim_net3": {
+      "train": 19,
+      "val": 7
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 2.4988641381873196,
+      "train_det_loss": 0.6689235361861777,
+      "train_loc_loss": 1.8299406020011417,
+      "val_score": 0.8154598783568592,
+      "val_top1": 0.4622131914878354,
+      "val_pr_auc_by_dataset": {
+        "leakdb_net1": 0.8496884929376788,
+        "leakdb_hanoi": 0.7705996552393223,
+        "sim_net1": null,
+        "sim_net3": 0.3179704801840198
+      },
+      "train_seconds": 1519.6,
+      "val_seconds": 119.9
+    },
+    {
+      "epoch": 2,
+      "train_loss": 2.1143253477179274,
+      "train_det_loss": 0.6094131986451523,
+      "train_loc_loss": 1.504912149072775,
+      "val_score": 0.8227859444231314,
+      "val_top1": 0.466042087366975,
+      "val_pr_auc_by_dataset": {
+        "leakdb_net1": 0.8503001148268732,
+        "leakdb_hanoi": 0.782551864624253,
+        "sim_net1": null,
+        "sim_net3": 0.3190013387603984
+      },
+      "train_seconds": 1520.0,
+      "val_seconds": 119.9
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.9598755146532993,
+      "train_det_loss": 0.5846253778273413,
+      "train_loc_loss": 1.3752501368259582,
+      "val_score": 0.8345540628281117,
+      "val_top1": 0.48910333894067815,
+      "val_pr_auc_by_dataset": {
+        "leakdb_net1": 0.8573237513621487,
+        "leakdb_hanoi": 0.8038171240602107,
+        "sim_net1": null,
+        "sim_net3": 0.3523364535727515
+      },
+      "train_seconds": 1520.8,
+      "val_seconds": 119.9
+    }
+  ],
+  "val": {
+    "all": {
+      "detection": {
+        "n_windows": 2578430,
+        "leak_fraction": 0.2169843664555563,
+        "pr_auc": 0.8345540628877489,
+        "threshold": 0.6291266679763794,
+        "precision": 0.9208150408315131,
+        "recall": 0.6834251151517752,
+        "f1": 0.7845560067383316,
+        "n_leak_events": 260,
+        "missed_leak_fraction": 0.011538461538461539,
+        "n_noleak_scenarios": 76
+      }
+    },
+    "leakdb_net1": {
+      "n_scenarios": 155,
+      "detection": {
+        "n_windows": 1354235,
+        "leak_fraction": 0.1964784546256743,
+        "pr_auc": 0.8573237511414594,
+        "threshold": 0.6291266679763794,
+        "precision": 0.9548823500990482,
+        "recall": 0.7427596419095153,
+        "f1": 0.8355684835365544,
+        "n_leak_events": 124,
+        "missed_leak_fraction": 0.0,
+        "delay_hours_median": 0.5,
+        "delay_hours_p90": 1.5,
+        "n_noleak_scenarios": 42,
+        "false_alarms_per_month": 0.6788861819192596
+      },
+      "localization": {
+        "n_windows": 264201,
+        "n_nodes": 11,
+        "top1": 0.5813301236558529,
+        "top5": 0.8453715163833596,
+        "chance_top1": 0.09090909090909091,
+        "chance_top5": 0.45454545454545453,
+        "error_pipes_mean": 0.6980329370441444,
+        "chance_error_pipes_mean": 2.1190908024228112,
+        "error_m_mean": 13.58880368703115,
+        "chance_error_m_mean": 38.99192898231573
+      }
+    },
+    "leakdb_hanoi": {
+      "n_scenarios": 140,
+      "detection": {
+        "n_windows": 1223180,
+        "leak_fraction": 0.23969162347324188,
+        "pr_auc": 0.8038171241977103,
+        "threshold": 0.6291266679763794,
+        "precision": 0.8902672031960166,
+        "recall": 0.6293445116751823,
+        "f1": 0.7374051841964335,
+        "n_leak_events": 131,
+        "missed_leak_fraction": 0.022900763358778626,
+        "delay_hours_median": 1.5,
+        "delay_hours_p90": 19.15,
+        "n_noleak_scenarios": 32,
+        "false_alarms_per_month": 4.00194574796841
+      },
+      "localization": {
+        "n_windows": 293186,
+        "n_nodes": 32,
+        "top1": 0.4063529636476503,
+        "top5": 0.7030349334552127,
+        "chance_top1": 0.03125,
+        "chance_top5": 0.15625,
+        "error_pipes_mean": 2.3306365242542277,
+        "chance_error_pipes_mean": 5.341061753460261,
+        "error_m_mean": 1125.0885803127812,
+        "chance_error_m_mean": 2403.9853754200526
+      }
+    },
+    "sim_net1": {
+      "n_scenarios": 0,
+      "detection": {
+        "n_windows": 0,
+        "leak_fraction": null,
+        "pr_auc": null,
+        "threshold": 0.6291266679763794,
+        "precision": null,
+        "recall": null,
+        "f1": null,
+        "n_leak_events": 0,
+        "missed_leak_fraction": null,
+        "delay_hours_median": null,
+        "delay_hours_p90": null,
+        "n_noleak_scenarios": 0,
+        "false_alarms_per_month": null
+      },
+      "localization": {
+        "n_windows": 0
+      }
+    },
+    "sim_net3": {
+      "n_scenarios": 7,
+      "detection": {
+        "n_windows": 1015,
+        "leak_fraction": 0.21182266009852216,
+        "pr_auc": 0.3523364535727515,
+        "threshold": 0.6291266679763794,
+        "precision": 0.21182266009852216,
+        "recall": 1.0,
+        "f1": 0.34959349593495936,
+        "n_leak_events": 5,
+        "missed_leak_fraction": 0.0,
+        "delay_hours_median": 0.0,
+        "delay_hours_p90": 0.5,
+        "n_noleak_scenarios": 2,
+        "false_alarms_per_month": 4.9655172413793105
+      },
+      "localization": {
+        "n_windows": 215,
+        "n_nodes": 97,
+        "top1": 0.0,
+        "top5": 0.0,
+        "chance_top1": 0.010309278350515464,
+        "chance_top5": 0.05154639175257732,
+        "error_pipes_mean": 8.097674418604651,
+        "chance_error_pipes_mean": 11.629872932150564,
+        "error_m_mean": 9.163335175185065,
+        "chance_error_m_mean": 14.163034115002983
+      }
+    }
+  },
+  "test": "not evaluated (pass --eval_test)"
+}
