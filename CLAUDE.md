@@ -67,12 +67,13 @@ historical period**, and the UI labels it "replay".
 
 ## UX flow
 
-### 1. Dashboard (landing)
-- Opens on the L-TOWN demo already loaded in the city view, replay running. Never
-land on an empty upload form.
-- Sidebar: network list (L-TOWN demo, uploaded networks, generated cities), an
-**Upload network** button, and a **Generate from a city** button (see Synthetic
-city generation).
+### 1. Landing
+- Light theme only (no dark mode).
+- A clean white screen titled "Upload .inp file" with a large white drop zone.
+Below it are a "Try the sample network" link and a list of recent networks.
+- After upload, the whole background becomes the rendered 3D network. A floating
+panel (top left) holds the network name, a network switcher, stats, the selected
+element, files (replace .inp, attach .csv) and delete. There is no timeline.
 
 ### 2. Upload
 - Drop zone for `network.inp` (required) and `readings.csv` (optional).
@@ -122,12 +123,10 @@ prediction was).
 - Uploaded real readings go through the same detection path, without a planted
 truth to score against.
 
-### 7. Timeline and alerts (all modes)
-- Time scrubber under the 3D view; the pipe colors and heatmap follow it.
-- Event feed ("possible leak started 14 Mar, growing"). Clicking an event jumps the
-scrubber and camera to it.
-- Ranked search zones panel ("Zone A: ~40 pipes, 1.2 km, most likely"). Clicking a
-zone flies the camera to it.
+### 7. Search zones (all modes)
+- No timeline or time scrubber (removed by design).
+- Ranked search zones in the panel ("Zone A: ~40 pipes, 1.2 km, most likely").
+Clicking a zone flies the camera to it.
 
 ## Synthetic city generation
 
@@ -167,3 +166,34 @@ L-TOWN data separately from synthetic tests.
 (detection delay, localization distance or zone hit rate).
 - If time allows, a second benchmark network with synthetic leaks.
 - Always report real-data and synthetic results separately.
+
+## Running the app
+
+- Frontend: `npm --prefix frontend run dev` (Vite, port 5173). Proxies `/api` to the backend.
+- Backend: `uv --directory backend run uvicorn app.main:app --port 8000` (FastAPI + WNTR 1.5,
+  Python 3.12 managed by uv). Both are also in `.claude/launch.json`.
+- The sample network is EPA Net3 (`frontend/public/samples/Net3.inp`): it has pumps, tanks and
+  controls, so WNTR converges over a full week. Hand-made test grids without pumps tend to drain
+  their tanks and stop converging.
+
+## Simulation and model testing
+
+- **Planting leaks:** each leak has a pipe, a size (hole area: 1 / 5 / 20 cm²), a break time
+  and an optional repair time. Stored with the network in the browser.
+- **`POST /api/simulate`** (`backend/app/simulate.py`): splits each leaking pipe at its midpoint,
+  adds a WNTR leak there, and runs WNTRSimulator with pressure-driven demand, with and without
+  the leaks. Sensors are spread automatically (farthest-point sampling, ~5% of junctions);
+  "measured" = leak-run pressure + Gaussian noise (0.05 m). Returns pressures, flows, measured
+  sensor series and ground-truth leak outflow per step. If WNTR stops converging, results are cut
+  at the last good step and a plain-language warning is returned.
+- **`POST /api/test`** (`backend/app/evaluate.py`): runs a detection model on a cached simulation
+  and scores it against the planted leaks: detection delay, location error (distance from the
+  predicted junction to the leak, in network coordinate units) and false alarms.
+- **Models** live in `backend/app/models/` and implement `LeakModel.run(ModelInput) -> ModelOutput`
+  (score per step, threshold, alarm events with a predicted junction). A model only sees sensor
+  IDs/positions, noisy measurements, expected no-leak pressures and sensor accuracy, never the
+  planted leaks. Register new models in `models/__init__.py`; the UI lists them automatically.
+- `baseline` is a **placeholder** (RMS pressure-drop threshold + residual-weighted centroid). Its
+  localization is coarse by design; the signature-matching model replaces it.
+- Simulation results are cached in backend memory (last 20) and in frontend memory; both are lost
+  on restart or reload.

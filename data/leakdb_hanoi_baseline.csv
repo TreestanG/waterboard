@@ -1,0 +1,41 @@
+scenario,sensors,n_leaks,leaks,detected,delays_h,repeat_alarms_during_leak,false_alarms_no_leak,step_tp,step_fp,step_fn,step_tn
+Scenario-1,all 31 junctions,0,,0,,0,0,0,0,0,17520
+Scenario-1,4 sensors,0,,0,,0,0,0,0,0,17520
+Scenario-2,all 31 junctions,1,node 6 2.5cm incipient,0,missed,0,0,0,0,826,16694
+Scenario-2,4 sensors,1,node 6 2.5cm incipient,0,missed,0,0,0,0,826,16694
+Scenario-3,all 31 junctions,1,node 13 14.5cm incipient,1,0.5,2,0,4462,0,3937,9121
+Scenario-3,4 sensors,1,node 13 14.5cm incipient,1,0.5,1,0,4462,0,3937,9121
+Scenario-4,all 31 junctions,1,node 14 16.2cm abrupt,1,1,2,0,384,0,0,17136
+Scenario-4,4 sensors,1,node 14 16.2cm abrupt,1,1,2,0,384,0,0,17136
+Scenario-5,all 31 junctions,0,,0,,0,0,0,0,0,17520
+Scenario-5,4 sensors,0,,0,,0,0,0,0,0,17520
+Scenario-6,all 31 junctions,1,node 6 10.2cm incipient,1,0.5,2,0,1189,0,2824,13507
+Scenario-6,4 sensors,1,node 6 10.2cm incipient,1,0.5,2,0,1189,0,2824,13507
+Scenario-7,all 31 junctions,1,node 10 3.9cm abrupt,1,1,0,0,8293,0,2577,6650
+Scenario-7,4 sensors,1,node 10 3.9cm abrupt,1,1,0,0,8420,0,2450,6650
+Scenario-8,all 31 junctions,1,node 23 5.2cm abrupt,1,1,1,0,5877,0,0,11643
+Scenario-8,4 sensors,1,node 23 5.2cm abrupt,1,1,1,0,5861,0,16,11643
+Scenario-9,all 31 junctions,1,node 7 18.9cm abrupt,1,1,5,0,7663,0,0,9857
+Scenario-9,4 sensors,1,node 7 18.9cm abrupt,1,1,5,0,7663,0,0,9857
+Scenario-10,all 31 junctions,0,,0,,0,0,0,0,0,17520
+Scenario-10,4 sensors,0,,0,,0,0,0,0,0,17520
+Scenario-11,all 31 junctions,1,node 12 7.1cm abrupt,1,1,2,0,1377,0,0,16143
+Scenario-11,4 sensors,1,node 12 7.1cm abrupt,1,1,2,0,1377,0,0,16143
+Scenario-12,all 31 junctions,0,,0,,0,0,0,0,0,17520
+Scenario-12,4 sensors,0,,0,,0,0,0,0,0,17520
+Scenario-13,all 31 junctions,2,node 21 12.3cm abrupt; node 30 7.0cm abrupt,2,1; 10,4,0,6371,0,0,11149
+Scenario-13,4 sensors,2,node 21 12.3cm abrupt; node 30 7.0cm abrupt,2,1; 11,4,0,6371,0,0,11149
+Scenario-14,all 31 junctions,0,,0,,0,0,0,0,0,17520
+Scenario-14,4 sensors,0,,0,,0,0,0,0,0,17520
+Scenario-15,all 31 junctions,2,node 26 8.5cm abrupt; node 3 19.1cm incipient,2,1; 0.5,3,0,3046,0,7000,7474
+Scenario-15,4 sensors,2,node 26 8.5cm abrupt; node 3 19.1cm incipient,2,1; 0.5,3,0,3046,0,7000,7474
+Scenario-16,all 31 junctions,1,node 3 5.5cm abrupt,1,1,0,0,3220,0,456,13844
+Scenario-16,4 sensors,1,node 3 5.5cm abrupt,1,1,0,0,3270,0,406,13844
+Scenario-17,all 31 junctions,1,node 20 2.3cm incipient,0,missed,0,0,0,0,4910,12610
+Scenario-17,4 sensors,1,node 20 2.3cm incipient,0,missed,0,0,0,0,4910,12610
+Scenario-18,all 31 junctions,2,node 13 6.5cm abrupt; node 29 16.9cm abrupt,2,1; 1,5,0,15751,0,0,1769
+Scenario-18,4 sensors,2,node 13 6.5cm abrupt; node 29 16.9cm abrupt,2,1; 1,7,0,15751,0,0,1769
+Scenario-19,all 31 junctions,1,node 20 18.8cm abrupt,1,1,4,0,10111,0,0,7409
+Scenario-19,4 sensors,1,node 20 18.8cm abrupt,1,1,4,0,10111,0,0,7409
+Scenario-20,all 31 junctions,1,node 15 12.0cm incipient,1,19.5,3,0,23,0,2159,15338
+Scenario-20,4 sensors,1,node 15 12.0cm incipient,1,19.5,3,0,23,0,2159,15338
